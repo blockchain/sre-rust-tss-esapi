@@ -6,7 +6,9 @@ macro_rules! named_field_buffer_type {
     ($native_type:ident,$MAX:expr,$tss_type:ident,$buffer_field_name:ident) => {
         use crate::tss2_esys::$tss_type;
         use crate::{Error, Result, WrapperErrorKind};
+        use hex;
         use log::error;
+        use serde::{Serialize, Serializer};
         use std::convert::TryFrom;
         use std::ops::Deref;
         use zeroize::{Zeroize, Zeroizing};
@@ -78,6 +80,15 @@ macro_rules! named_field_buffer_type {
                 };
                 buffer.$buffer_field_name[..native.0.len()].copy_from_slice(&native.0);
                 buffer
+            }
+        }
+
+        impl Serialize for $native_type {
+            fn serialize<S>(&self, serializer: S) -> core::result::Result<S::Ok, S::Error>
+            where
+                S: Serializer,
+            {
+                serializer.serialize_str(&hex::encode(self.as_bytes()))
             }
         }
     };
