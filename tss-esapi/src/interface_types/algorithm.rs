@@ -9,12 +9,15 @@ use crate::{
     },
     Error, Result, WrapperErrorKind,
 };
+use serde::Serialize;
 use std::convert::TryFrom;
+
 /// Enum containing the supported hash algorithms
 ///
 /// # Details
 /// This corresponds to TPMI_ALG_HASH interface type.
-#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash, Serialize)]
+#[serde(rename_all = "lowercase")]
 pub enum HashingAlgorithm {
     Sha1,
     Sha256,

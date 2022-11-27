@@ -5,44 +5,79 @@ use enumflags2::bitflags;
 use log::error;
 use num_derive::{FromPrimitive, ToPrimitive};
 use num_traits::{FromPrimitive, ToPrimitive};
+use serde::Serialize;
 use std::convert::TryFrom;
 
 /// Enum with the bit flag for each PCR slot.
 #[bitflags]
 #[repr(u32)]
-#[derive(FromPrimitive, ToPrimitive, Hash, Debug, Eq, PartialEq, Ord, PartialOrd, Clone, Copy)]
+#[derive(
+    Serialize, FromPrimitive, ToPrimitive, Hash, Debug, Eq, PartialEq, Ord, PartialOrd, Clone, Copy,
+)]
 pub enum PcrSlot {
+    #[serde(rename = "0")]
     Slot0 = 0x0000_0001,
+    #[serde(rename = "1")]
     Slot1 = 0x0000_0002,
+    #[serde(rename = "2")]
     Slot2 = 0x0000_0004,
+    #[serde(rename = "3")]
     Slot3 = 0x0000_0008,
+    #[serde(rename = "4")]
     Slot4 = 0x0000_0010,
+    #[serde(rename = "5")]
     Slot5 = 0x0000_0020,
+    #[serde(rename = "6")]
     Slot6 = 0x0000_0040,
+    #[serde(rename = "7")]
     Slot7 = 0x0000_0080,
+    #[serde(rename = "8")]
     Slot8 = 0x0000_0100,
+    #[serde(rename = "9")]
     Slot9 = 0x0000_0200,
+    #[serde(rename = "10")]
     Slot10 = 0x0000_0400,
+    #[serde(rename = "11")]
     Slot11 = 0x0000_0800,
+    #[serde(rename = "12")]
     Slot12 = 0x0000_1000,
+    #[serde(rename = "13")]
     Slot13 = 0x0000_2000,
+    #[serde(rename = "14")]
     Slot14 = 0x0000_4000,
+    #[serde(rename = "15")]
     Slot15 = 0x0000_8000,
+    #[serde(rename = "16")]
     Slot16 = 0x0001_0000,
+    #[serde(rename = "17")]
     Slot17 = 0x0002_0000,
+    #[serde(rename = "18")]
     Slot18 = 0x0004_0000,
+    #[serde(rename = "19")]
     Slot19 = 0x0008_0000,
+    #[serde(rename = "20")]
     Slot20 = 0x0010_0000,
+    #[serde(rename = "21")]
     Slot21 = 0x0020_0000,
+    #[serde(rename = "22")]
     Slot22 = 0x0040_0000,
+    #[serde(rename = "23")]
     Slot23 = 0x0080_0000,
+    #[serde(rename = "24")]
     Slot24 = 0x0100_0000,
+    #[serde(rename = "25")]
     Slot25 = 0x0200_0000,
+    #[serde(rename = "26")]
     Slot26 = 0x0400_0000,
+    #[serde(rename = "27")]
     Slot27 = 0x0800_0000,
+    #[serde(rename = "28")]
     Slot28 = 0x1000_0000,
+    #[serde(rename = "29")]
     Slot29 = 0x2000_0000,
+    #[serde(rename = "30")]
     Slot30 = 0x4000_0000,
+    #[serde(rename = "31")]
     Slot31 = 0x8000_0000,
 }
 
